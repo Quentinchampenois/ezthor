@@ -6,4 +6,4 @@ require 'yaml'
 require_relative 'builder'
 require_relative 'interpreter'
 
-Builder.new('commands.yml', 'test.rb').store!
+Builder.new('commands.yml').store!

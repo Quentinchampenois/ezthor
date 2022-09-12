@@ -1,4 +1,4 @@
-name: osp
+name: ezthor
 description: This is my CLI description
 options:
   - name: verbose
@@ -32,10 +32,6 @@ commands:
       - name: "start"
         default: ""
     options:
-      - name: from
-        short: f
-        required: true
-        desc: 'From ...?'
       - name: watch
         short: w
         desc: 'Just watch I guess ?'
