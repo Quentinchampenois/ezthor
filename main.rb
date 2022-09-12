@@ -5,6 +5,16 @@
 require 'yaml'
 require 'byebug'
 
+# source: https://apidock.com/rails/String/camelize
+def camelize(string, uppercase_first_letter = true)
+  if uppercase_first_letter
+    string = string.sub(/^[a-z\d]*/) { |match| match.capitalize }
+  else
+    string = string.sub(/^(?:(?=\b|[A-Z_])|\w)/) { |match| match.downcase }
+  end
+  string.gsub(/(?:_|(\/))([a-z\d]*)/) { "#{$1}#{$2.capitalize}" }.gsub("/", "::")
+end
+
 def print_desc(ary)
   return '' if ary.nil? || ary.empty?
 
@@ -56,9 +66,9 @@ puts "
 require 'thor'
 
 # #{core["description"]}
-class #{core["name"].camelize} < Thor
+class #{camelize core["name"]} < Thor
   #{defs.join('')}
 end
 
-#{core["name"].camelize}.start(ARGV)
+#{camelize core["name"]}.start(ARGV)
 "
