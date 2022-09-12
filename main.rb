@@ -47,31 +47,40 @@ def param_format!(param_h)
   end
 end
 
+def add_opt(str, opt, output)
+  return '' if opt.nil?
+  return '' if opt.respond_to?(:empty?) && opt.empty?
+
+  if str.end_with?(",")
+    " #{output}"
+  else
+    ", #{output}"
+  end
+end
+
+
 def options(ary)
   return '' if ary.nil? || ary.empty?
 
-  add_opt = lambda do |str, opt, output|
-    return '' if opt.nil?
-    return '' if opt.respond_to?(:empty?) && opt.empty?
-
-    if str.end_with?(",")
-      " #{output}"
-    else
-      ", #{output}"
-    end
-  end
-
   ary.map do |opt|
     opt_desc = ''
-    opt_desc += add_opt.call(opt_desc, opt['required'], "required: :#{opt["required"]}")
-    opt_desc += add_opt.call(opt_desc, opt['short'], "aliases: '-#{opt["short"]}'")
-    opt_desc += add_opt.call(opt_desc, opt['desc'], "banner: '#{opt["desc"]}'")
-    opt_desc += add_opt.call(opt_desc, opt['default'], "default: '#{opt["default"]}'")
+    opt_desc += add_opt(opt_desc, opt['required'], "required: :#{opt["required"]}")
+    opt_desc += add_opt(opt_desc, opt['type'], "type: :#{opt["type"]}")
+    opt_desc += add_opt(opt_desc, opt['short'], "aliases: '-#{opt["short"]}'")
+    opt_desc += add_opt(opt_desc, opt['desc'], "banner: '#{opt["desc"]}'")
+    opt_desc += add_opt(opt_desc, opt['default'], "default: '#{opt["default"]}'")
 
     opt_desc = opt_desc[0..-2] if opt_desc.end_with?(",")
 
     "option :#{opt['name']}#{opt_desc}"
   end.join("\n  ")
+end
+
+def class_opts(ary)
+  opts = options(ary)
+  return '' if opts.nil? || opts.empty?
+
+  "class_#{opts}"
 end
 
 core = YAML.load_file('commands.yml')
@@ -96,6 +105,8 @@ require 'thor'
 
 # #{core['description']}
 class #{camelize core['name']} < Thor
+  #{class_opts(core["options"])}
+
   #{defs.join('')}
 end
 

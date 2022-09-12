@@ -1,6 +1,13 @@
 name: osp
 description: This is my CLI description
+options:
+  - name: verbose
+    type: boolean
+    short: v
 commands:
+  hello:
+    cmd: hello world
+    description: Just saying hello world
   server:
     cmd: run server
     description: Run the server
@@ -24,3 +31,11 @@ commands:
         default: true
       - name: "start"
         default: ""
+    options:
+      - name: from
+        short: f
+        required: true
+        desc: 'From ...?'
+      - name: watch
+        short: w
+        desc: 'Just watch I guess ?'
