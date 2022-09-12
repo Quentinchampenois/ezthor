@@ -70,7 +70,7 @@ def options(ary)
 
     opt_desc = opt_desc[0..-2] if opt_desc.end_with?(",")
 
-    "options :#{opt['name']}#{opt_desc}"
+    "option :#{opt['name']}#{opt_desc}"
   end.join("\n  ")
 end
 
@@ -94,10 +94,10 @@ puts "
 
 require 'thor'
 
-# #{core["description"]}
-class #{camelize core["name"]} < Thor
+# #{core['description']}
+class #{camelize core['name']} < Thor
   #{defs.join('')}
 end
 
-#{camelize core["name"]}.start(ARGV)
+#{camelize core['name']}.start(ARGV)
 "
