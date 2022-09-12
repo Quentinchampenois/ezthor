@@ -4,6 +4,14 @@ commands:
   server:
     cmd: run server
     description: Run the server
+    options:
+      - name: from
+        short: f
+        required: true
+        desc: 'From ...?'
+      - name: watch
+        short: w
+        desc: 'Just watch I guess ?'
   start:
     cmd: start!
     description: Just starts...
