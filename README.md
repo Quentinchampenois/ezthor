@@ -28,20 +28,20 @@ Simple getting started...
 
 The whole configuration of your cli is located at `./commands.yml`
 
-Keys : 
+Keys :
 
-* `name` - String - Name of your CLI file, your Thor class 
-* `description` - String - Main description of your CLI
-* `options` - Array - Contains thor `class_options`
-  * `name` - Name of the flag
-  * `type` - Type of the flag
-  * `short` - Shortcut of the flag (equals to `aliases` in Thor)
+* `name` - `String` - Name of your CLI file, your Thor class 
+* `description` - `String` - Main description of your CLI
+* `options` - `Array` - (Optional) - Contains thor `class_options`
+  * `name` - `String` - Name of the flag
+  * `type` - `String` - Type of the flag
+  * `short` - `String` - Shortcut of the flag (equals to `aliases` in Thor)
 * `commands` - List of top-level commands
   * `<Name of the command>`
-    * `cmd` - String - Main command of your newly created thor command
-    * `description` - String - Description of your thor command
-    * `options` - String - List of options for your thor command
-      * `name` - String - Option name
-      * `short` - String - Shorcut of the option
-      * `required` - Boolean
-      * `desc` - String - Description of the option
+    * `cmd` - `String` - Main command of your newly created thor command
+    * `description` - `String` - Description of your thor command
+    * `options` - `String` (Optional) - List of options for your thor command
+      * `name` - `String` - Option name
+      * `short` - `String` - Shorcut of the option
+      * `required` - `Boolean`
+      * `desc` - `String` - Description of the option
