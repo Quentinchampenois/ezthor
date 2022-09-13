@@ -40,8 +40,13 @@ Keys :
   * `<Name of the command>`
     * `cmd` - `String` - Main command of your newly created thor command
     * `description` - `String` - Description of your thor command
+    * `param` - `Array` (Optional) - Command parameters
+      * `name` - `String` (Required) - Name of the parameter
+      * `default` - `String | Nil | Boolean` (Optional) - Default value of command parameter
+        * If not defined, param becomes a required argument for the command
     * `options` - `String` (Optional) - List of options for your thor command
       * `name` - `String` - Option name
       * `short` - `String` - Shorcut of the option
       * `required` - `Boolean`
       * `desc` - `String` - Description of the option
+      * `default` - `String`
